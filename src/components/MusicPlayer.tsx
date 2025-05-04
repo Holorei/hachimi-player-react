@@ -7,6 +7,13 @@ interface Song {
   author: string;
   originalTitle: string;
   videoTitle: string;
+  Duration: string;  // 持续时间（秒）
+}
+
+// 播放模式枚举
+enum PlayMode {
+  SEQUENTIAL = 'sequential',  // 顺序播放
+  RANDOM = 'random'          // 随机播放
 }
 
 const MusicPlayer = () => {
@@ -17,8 +24,9 @@ const MusicPlayer = () => {
   const [error, setError] = useState<string | null>(null);
   const [searchQuery, setSearchQuery] = useState('');
   const [autoPlay, setAutoPlay] = useState(true);
+  const [playMode, setPlayMode] = useState<PlayMode>(PlayMode.SEQUENTIAL);
   const iframeRef = useRef<HTMLIFrameElement>(null);
-  const checkIntervalRef = useRef<number | null>(null);
+  const playTimerRef = useRef<number | null>(null);
 
   useEffect(() => {
     // 加载歌曲列表
@@ -45,9 +53,27 @@ const MusicPlayer = () => {
 
   const playSong = async (song: Song) => {
     try {
+      // 清除之前的定时器
+      if (playTimerRef.current) {
+        clearTimeout(playTimerRef.current);
+        playTimerRef.current = null;
+      }
+      
       setLoading(true);
       setError(null);
       setCurrentSong(song);
+      
+      // 设置自动播放定时器
+      if (autoPlay) {
+        const duration = parseInt(song.Duration) || 240; // 默认4分钟
+        const timeoutDuration = (duration + 5) * 1000; // 加5秒缓冲
+        console.log(`设置自动播放定时器：${timeoutDuration / 1000}秒后播放下一首`);
+        
+        playTimerRef.current = window.setTimeout(() => {
+          handleVideoEnded();
+        }, timeoutDuration);
+      }
+      
       setLoading(false);
     } catch {
       setError('无法加载视频，请稍后再试。');
@@ -55,68 +81,96 @@ const MusicPlayer = () => {
     }
   };
 
+  // 获取下一首歌曲
+  const getNextSong = (): Song | null => {
+    if (!currentSong || filteredSongs.length === 0) return null;
+    
+    if (playMode === PlayMode.RANDOM) {
+      // 随机模式：随机选择一首（不是当前歌曲）
+      const availableSongs = filteredSongs.filter(song => song.bvid !== currentSong.bvid);
+      if (availableSongs.length === 0) return filteredSongs[0];
+      
+      const randomIndex = Math.floor(Math.random() * availableSongs.length);
+      return availableSongs[randomIndex];
+    } else {
+      // 顺序模式：播放下一首
+      const currentIndex = filteredSongs.findIndex(song => song.bvid === currentSong.bvid);
+      if (currentIndex === -1) return filteredSongs[0];
+      
+      if (currentIndex < filteredSongs.length - 1) {
+        return filteredSongs[currentIndex + 1];
+      } else {
+        // 到达列表末尾，从头开始
+        return filteredSongs[0];
+      }
+    }
+  };
+
   // 处理自动播放下一首
   const handleVideoEnded = () => {
     if (autoPlay && currentSong) {
-      const currentIndex = filteredSongs.findIndex(song => song.bvid === currentSong.bvid);
-      if (currentIndex > -1 && currentIndex < filteredSongs.length - 1) {
-        // 播放下一首
-        playSong(filteredSongs[currentIndex + 1]);
-      } else if (filteredSongs.length > 0) {
-        // 如果是最后一首，则从头开始播放
-        playSong(filteredSongs[0]);
+      const nextSong = getNextSong();
+      if (nextSong) {
+        console.log(`准备播放下一首: ${nextSong.originalTitle}`);
+        playSong(nextSong);
       }
     }
   };
 
-  // 检查是否出现了重播按钮
-  const checkForReplayButton = () => {
-    if (!iframeRef.current || !autoPlay) return;
+  // 切换播放模式
+  const togglePlayMode = () => {
+    setPlayMode(prevMode => 
+      prevMode === PlayMode.SEQUENTIAL ? PlayMode.RANDOM : PlayMode.SEQUENTIAL
+    );
+  };
 
-    try {
-      const iframeDocument = iframeRef.current.contentDocument || 
-                             (iframeRef.current.contentWindow?.document);
-      
-      if (iframeDocument) {
-        // 查找重播按钮
-        const replayButton = iframeDocument.querySelector('.bpx-player-replay');
-        
-        if (replayButton) {
-          console.log('检测到视频结束，准备播放下一首');
-          handleVideoEnded();
-          
-          // 清除之前的检查定时器
-          if (checkIntervalRef.current) {
-            clearInterval(checkIntervalRef.current);
-            checkIntervalRef.current = null;
-          }
-        }
-      }
-    } catch (error) {
-      console.error('无法访问iframe内容，可能是跨域限制:', error);
+  // 手动播放下一首
+  const playNext = () => {
+    const nextSong = getNextSong();
+    if (nextSong) {
+      playSong(nextSong);
     }
   };
 
-  // 当视频加载或自动播放状态更改时设置检查重播按钮的定时器
+  // 手动播放上一首
+  const playPrevious = () => {
+    if (!currentSong || filteredSongs.length === 0) return;
+    
+    const currentIndex = filteredSongs.findIndex(song => song.bvid === currentSong.bvid);
+    if (currentIndex === -1) return;
+    
+    let prevIndex = currentIndex - 1;
+    if (prevIndex < 0) {
+      prevIndex = filteredSongs.length - 1; // 循环到列表末尾
+    }
+    
+    playSong(filteredSongs[prevIndex]);
+  };
+
+  // 当自动播放或播放模式状态更改时，更新定时器
   useEffect(() => {
-    // 清除任何现有的定时器
-    if (checkIntervalRef.current) {
-      clearInterval(checkIntervalRef.current);
-      checkIntervalRef.current = null;
+    // 如果关闭了自动播放，清除定时器
+    if (!autoPlay && playTimerRef.current) {
+      clearTimeout(playTimerRef.current);
+      playTimerRef.current = null;
     }
-
-    if (currentSong && autoPlay) {
-      // 每秒检查一次是否出现了重播按钮
-      checkIntervalRef.current = window.setInterval(checkForReplayButton, 1000);
-    }
-
+    
+    // 组件卸载时清除定时器
     return () => {
-      if (checkIntervalRef.current) {
-        clearInterval(checkIntervalRef.current);
-        checkIntervalRef.current = null;
+      if (playTimerRef.current) {
+        clearTimeout(playTimerRef.current);
+        playTimerRef.current = null;
       }
     };
-  }, [currentSong, autoPlay]);
+  }, [autoPlay, playMode]);
+
+  // 格式化时间
+  const formatTime = (seconds: string): string => {
+    const totalSeconds = parseInt(seconds);
+    const minutes = Math.floor(totalSeconds / 60);
+    const remainingSeconds = totalSeconds % 60;
+    return `${minutes}:${remainingSeconds.toString().padStart(2, '0')}`;
+  };
 
   return (
     <div className="music-player">
@@ -128,15 +182,24 @@ const MusicPlayer = () => {
           onChange={(e) => setSearchQuery(e.target.value)}
           className="search-input"
         />
-        <div className="auto-play-toggle">
-          <label>
-            <input 
-              type="checkbox" 
-              checked={autoPlay} 
-              onChange={() => setAutoPlay(!autoPlay)} 
-            />
-            <span>自动播放下一首</span>
-          </label>
+        <div className="player-controls-top">
+          <div className="auto-play-toggle">
+            <label>
+              <input 
+                type="checkbox" 
+                checked={autoPlay} 
+                onChange={() => setAutoPlay(!autoPlay)} 
+              />
+              <span>自动播放下一首</span>
+            </label>
+          </div>
+          <button 
+            className={`play-mode-btn ${playMode === PlayMode.RANDOM ? 'random' : ''}`}
+            onClick={togglePlayMode}
+            title={playMode === PlayMode.SEQUENTIAL ? "顺序播放" : "随机播放"}
+          >
+            {playMode === PlayMode.SEQUENTIAL ? "顺序播放" : "随机播放"}
+          </button>
         </div>
       </div>
 
@@ -155,7 +218,10 @@ const MusicPlayer = () => {
                   </div>
                   <div className="song-info">
                     <span className="song-author">{song.author}</span>
-                    <span className="song-bv">{song.bvid}</span>
+                    <div className="song-details">
+                      <span className="song-duration">{formatTime(song.Duration)}</span>
+                      <span className="song-bv">{song.bvid}</span>
+                    </div>
                   </div>
                 </div>
               </li>
@@ -164,12 +230,18 @@ const MusicPlayer = () => {
         )}
       </div>
 
-      <div className="player-controls">
+      <div className="player-container">
         {currentSong && (
           <div className="now-playing">
             <h3>当前播放: {currentSong.originalTitle}</h3>
             <p>{currentSong.videoTitle}</p>
             <p>作者: {currentSong.author}</p>
+            <p>时长: {formatTime(currentSong.Duration)}</p>
+            
+            <div className="playback-controls">
+              <button onClick={playPrevious} className="control-btn previous">上一首</button>
+              <button onClick={playNext} className="control-btn next">下一首</button>
+            </div>
             
             {loading && <p>加载中...</p>}
             {error && <p className="error">{error}</p>}
@@ -184,9 +256,17 @@ const MusicPlayer = () => {
                   allowFullScreen 
                   title={currentSong.originalTitle}
                 ></iframe>
-                <p className="player-note">
-                  音频播放由哔哩哔哩提供
-                </p>
+                <div className="player-info">
+                  <p className="player-note">
+                    音频播放由哔哩哔哩提供
+                  </p>
+                  {autoPlay && (
+                    <p className="auto-play-note">
+                      将在{formatTime(currentSong.Duration)}后自动播放
+                      {playMode === PlayMode.RANDOM ? "随机" : "下一首"}
+                    </p>
+                  )}
+                </div>
               </div>
             )}
           </div>
