@@ -1,0 +1,145 @@
+/* 搜索容器样式 */
+.search-container {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin-bottom: 20px;
+  padding: 15px;
+  border-radius: 8px;
+  box-shadow: var(--light-shadow);
+  transition: all var(--transition-time) ease;
+}
+
+.light .search-container {
+  background-color: var(--light-tertiary-bg);
+}
+
+.dark .search-container {
+  background-color: var(--dark-tertiary-bg);
+  box-shadow: var(--dark-shadow);
+}
+
+.search-input {
+  flex: 1;
+  padding: 10px 15px;
+  border-radius: 4px;
+  font-size: 14px;
+  outline: none;
+  transition: border-color 0.2s, background-color 0.2s, color 0.2s;
+}
+
+.light .search-input {
+  border: 1px solid var(--light-border);
+  background-color: var(--light-tertiary-bg);
+  color: var(--light-text);
+}
+
+.dark .search-input {
+  border: 1px solid var(--dark-border);
+  background-color: var(--dark-button-bg);
+  color: var(--dark-text);
+}
+
+.search-input:focus {
+  border-color: var(--primary-color);
+}
+
+.player-controls-top {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.control-group {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+}
+
+.auto-play-toggle {
+  display: flex;
+  align-items: center;
+}
+
+.auto-play-toggle label {
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+  user-select: none;
+}
+
+.auto-play-toggle input {
+  margin-right: 5px;
+}
+
+.auto-play-toggle span {
+  font-size: 14px;
+  transition: color 0.2s;
+}
+
+.light .auto-play-toggle span {
+  color: var(--light-secondary-text);
+}
+
+.dark .auto-play-toggle span {
+  color: var(--dark-secondary-text);
+}
+
+.play-mode-btn, .favorite-filter-btn {
+  padding: 6px 12px;
+  border-radius: 4px;
+  font-size: 14px;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.light .play-mode-btn, .light .favorite-filter-btn {
+  background-color: var(--light-button-bg);
+  border: 1px solid var(--light-button-border);
+  color: var(--light-secondary-text);
+}
+
+.dark .play-mode-btn, .dark .favorite-filter-btn {
+  background-color: var(--dark-button-bg);
+  border: 1px solid var(--dark-button-border);
+  color: var(--dark-secondary-text);
+}
+
+.light .play-mode-btn:hover, .light .favorite-filter-btn:hover {
+  background-color: var(--light-border);
+}
+
+.dark .play-mode-btn:hover, .dark .favorite-filter-btn:hover {
+  background-color: #555;
+}
+
+/* 播放模式按钮样式 */
+.play-mode-btn.mode-random {
+  background-color: var(--primary-color);
+  color: white;
+  border-color: var(--primary-color);
+}
+
+.play-mode-btn.mode-loop {
+  background-color: var(--success-color);
+  color: white;
+  border-color: var(--success-color);
+}
+
+.favorite-filter-btn.active {
+  background-color: var(--error-color);
+  color: white;
+  border-color: var(--error-color);
+}
+
+@media (max-width: 768px) {
+  .play-mode-btn, .favorite-filter-btn {
+    font-size: 12px;
+    padding: 5px 10px;
+  }
+  
+  .favorite-filter-btn {
+    width: 100%;
+    text-align: center;
+  }
+} 

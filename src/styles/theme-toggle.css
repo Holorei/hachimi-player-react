@@ -1,0 +1,31 @@
+.top-controls {
+  display: flex;
+  justify-content: flex-end;
+  margin-bottom: 15px;
+}
+
+.theme-toggle {
+  background: none;
+  border: none;
+  font-size: 1.5rem;
+  cursor: pointer;
+  padding: 5px 10px;
+  border-radius: 50%;
+  transition: background-color 0.2s;
+}
+
+.light .theme-toggle {
+  background-color: var(--light-button-bg);
+}
+
+.dark .theme-toggle {
+  background-color: var(--dark-button-bg);
+}
+
+.theme-toggle:hover {
+  background-color: var(--light-border);
+}
+
+.dark .theme-toggle:hover {
+  background-color: #555;
+} 

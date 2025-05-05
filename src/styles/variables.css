@@ -1,0 +1,42 @@
+:root {
+  /* 颜色变量 */
+  --primary-color: #fb7299;
+  --success-color: #4caf50;
+  --error-color: #ff4757;
+  
+  /* 浅色主题变量 */
+  --light-bg: #f9f9f9;
+  --light-secondary-bg: #f5f5f5;
+  --light-tertiary-bg: #fff;
+  --light-text: #333;
+  --light-secondary-text: #666;
+  --light-tertiary-text: #888;
+  --light-border: #e0e0e0;
+  --light-button-bg: #f5f5f5;
+  --light-button-border: #ddd;
+  
+  /* 深色主题变量 */
+  --dark-bg: #222;
+  --dark-secondary-bg: #2a2a2a;
+  --dark-tertiary-bg: #333;
+  --dark-text: #f0f0f0;
+  --dark-secondary-text: #ccc;
+  --dark-tertiary-text: #999;
+  --dark-border: #555;
+  --dark-button-bg: #444;
+  --dark-button-border: #555;
+  
+  /* 阴影 */
+  --light-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
+  --dark-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+  
+  /* 动画持续时间 */
+  --transition-time: 0.3s;
+}
+
+/* 共享动画 */
+@keyframes pulse {
+  0% { transform: scale(1); }
+  50% { transform: scale(1.2); }
+  100% { transform: scale(1); }
+} 

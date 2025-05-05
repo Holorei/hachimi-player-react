@@ -30,7 +30,7 @@ function App() {
   }, []);
   
   return (
-    <div className="app-container">
+    <div className="app-container" style={{ width: '100vw', minHeight: '100vh' }}>
       <header>
         <h1>哔哩哔哩音乐播放器</h1>
         <p>点击歌曲播放音频</p>

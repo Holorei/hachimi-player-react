@@ -1,0 +1,98 @@
+.music-player {
+  max-width: none;
+  margin: 0 auto;
+  padding: 20px;
+  font-family: Arial, sans-serif;
+  transition: all var(--transition-time) ease;
+}
+
+/* 主题相关样式 */
+.music-player.light {
+  background-color: var(--light-bg);
+  color: var(--light-text);
+}
+
+.music-player.dark {
+  background-color: var(--dark-bg);
+  color: var(--dark-text);
+}
+
+/* 双栏布局 */
+.player-content {
+  display: flex;
+  gap: 20px;
+  flex-wrap: wrap;
+}
+
+.content-left,
+.content-right {
+  flex: 1;
+  min-width: 50%; /* 改为百分比布局 */
+  max-width: calc(50% - 10px); /* 考虑间隙 */
+}
+
+.player-header {
+  display: flex;
+  justify-content: flex-end;
+  margin-bottom: 15px;
+}
+
+/* 未选择歌曲时的占位提示 */
+.no-song-selected {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 40px;
+  border-radius: 8px;
+  text-align: center;
+}
+
+.light .no-song-selected {
+  background-color: var(--light-secondary-bg);
+}
+
+.dark .no-song-selected {
+  background-color: var(--dark-secondary-bg);
+}
+
+.no-song-selected h3 {
+  margin-top: 0;
+  font-size: 24px;
+}
+
+.no-song-selected p {
+  color: var(--light-tertiary-text);
+}
+
+.dark .no-song-selected p {
+  color: var(--dark-tertiary-text);
+}
+
+/* 响应式调整 */
+@media (max-width: 1000px) {
+  .player-content {
+    flex-direction: column;
+  }
+  
+  .content-left, .content-right {
+    min-width: 100%;
+  }
+  
+  .content-left {
+    margin-bottom: 20px;
+  }
+}
+
+@media (max-width: 768px) {
+  .player-controls-top {
+    flex-direction: column;
+    gap: 10px;
+  }
+  
+  .control-group {
+    width: 100%;
+    justify-content: space-between;
+  }
+} 

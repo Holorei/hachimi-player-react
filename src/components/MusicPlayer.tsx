@@ -7,7 +7,7 @@ import { ThemeToggle } from './ThemeToggle';
 import { SearchBar } from './SearchBar';
 import { SongList } from './SongList';
 import { Player } from './Player';
-import './MusicPlayer.css';
+import '../styles/index.css';
 
 const MusicPlayer: React.FC = () => {
   // 使用自定义钩子管理状态和逻辑

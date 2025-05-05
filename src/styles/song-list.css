@@ -1,0 +1,172 @@
+/* 歌曲列表样式 */
+.song-list {
+  border-radius: 8px;
+  padding: 20px;
+  margin-bottom: 20px;
+  transition: background-color var(--transition-time);
+  height: 100%;
+}
+
+.light .song-list {
+  background-color: var(--light-secondary-bg);
+}
+
+.dark .song-list {
+  background-color: var(--dark-secondary-bg);
+}
+
+.song-list h2 {
+  margin-top: 0;
+  font-size: 24px;
+  text-align: center;
+  margin-bottom: 20px;
+  transition: color 0.2s;
+}
+
+.light .song-list h2 {
+  color: var(--light-text);
+}
+
+.dark .song-list h2 {
+  color: var(--dark-text);
+}
+
+.song-list ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  max-height: 500px;
+  overflow-y: auto;
+}
+
+/* 修改红心位置的相关样式 */
+.song-title-container {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.song-item {
+  padding: 12px;
+  border-radius: 6px;
+  margin-bottom: 8px;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.light .song-item {
+  background-color: var(--light-tertiary-bg);
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+}
+
+.dark .song-item {
+  background-color: var(--dark-tertiary-bg);
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.2);
+}
+
+.light .song-item:hover {
+  background-color: #f9f9f9;
+}
+
+.dark .song-item:hover {
+  background-color: #3a3a3a;
+}
+
+.light .song-item.active {
+  background-color: #ffe0e9;
+  border-left: 4px solid var(--primary-color);
+}
+
+.dark .song-item.active {
+  background-color: #3a2a30;
+  border-left: 4px solid var(--primary-color);
+}
+
+.song-title {
+  font-weight: bold;
+  margin-bottom: 5px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  flex: 1;
+}
+
+.video-title {
+  font-size: 0.85em;
+  font-weight: normal;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  opacity: 0.7;
+}
+
+.light .video-title {
+  color: var(--light-secondary-text);
+}
+
+.dark .video-title {
+  color: var(--dark-secondary-text);
+}
+
+.song-info {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 0.85em;
+  margin-top: 5px;
+}
+
+.light .song-info {
+  color: var(--light-secondary-text);
+}
+
+.dark .song-info {
+  color: var(--dark-secondary-text);
+}
+
+.song-details {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.song-duration, .song-bv {
+  display: inline-block;
+  padding: 2px 6px;
+  border-radius: 4px;
+}
+
+.light .song-duration {
+  background-color: var(--light-secondary-bg);
+  color: var(--light-secondary-text);
+}
+
+.dark .song-duration {
+  background-color: var(--dark-button-bg);
+  color: var(--dark-secondary-text);
+}
+
+.light .song-bv {
+  background-color: #eeeeee;
+  color: var(--light-tertiary-text);
+}
+
+.dark .song-bv {
+  background-color: #3a3a3a;
+  color: var(--dark-tertiary-text);
+}
+
+.no-results {
+  text-align: center;
+  padding: 30px;
+  font-style: italic;
+  font-size: 16px;
+}
+
+.light .no-results {
+  color: var(--light-tertiary-text);
+}
+
+.dark .no-results {
+  color: var(--dark-tertiary-text);
+} 
