@@ -46,10 +46,8 @@ const MusicPlayer: React.FC = () => {
 
   return (
     <div className={`music-player ${theme}`}>
-      <div className="player-header">
-        <ThemeToggle theme={theme} toggleTheme={toggleTheme} />
-      </div>
-      
+
+    <div style={{display: 'flex', justifyContent: 'space-evenly', alignItems: 'center' }}>
       <SearchBar 
         searchQuery={searchQuery}
         setSearchQuery={setSearchQuery}
@@ -60,7 +58,14 @@ const MusicPlayer: React.FC = () => {
         showFavorites={showFavorites}
         toggleShowFavorites={toggleShowFavorites}
         getPlayModeText={getPlayModeText}
-      />
+      />  
+      <div className="player-header">
+        <ThemeToggle theme={theme} toggleTheme={toggleTheme} />
+      </div>
+    </div>
+
+
+
       
       <div className="player-content">
         <div className="content-left">

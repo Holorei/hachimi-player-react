@@ -1,13 +1,14 @@
 /* 搜索容器样式 */
 .search-container {
   display: flex;
-  flex-direction: column;
-  gap: 10px;
+
+  gap: 50px;
   margin-bottom: 20px;
   padding: 15px;
   border-radius: 8px;
   box-shadow: var(--light-shadow);
   transition: all var(--transition-time) ease;
+  flex: 8;
 }
 
 .light .search-container {
@@ -53,7 +54,7 @@
 .control-group {
   display: flex;
   align-items: center;
-  gap: 15px;
+  gap: 30px;
 }
 
 .auto-play-toggle {

@@ -36,6 +36,7 @@
   display: flex;
   justify-content: flex-end;
   margin-bottom: 15px;
+  flex: 1;
 }
 
 /* 未选择歌曲时的占位提示 */

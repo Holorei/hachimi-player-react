@@ -32,7 +32,7 @@ function App() {
   return (
     <div className="app-container" style={{ width: '100vw', minHeight: '100vh' }}>
       <header>
-        <h1>哔哩哔哩音乐播放器</h1>
+        <h1>哈基米音乐播放器</h1>
         <p>点击歌曲播放音频</p>
       </header>
       
@@ -41,7 +41,7 @@ function App() {
       </main>
       
       <footer>
-        <p>注意：此应用仅作为演示，不提供实际的音频播放功能</p>
+        <p></p>
       </footer>
     </div>
   )

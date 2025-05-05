@@ -52,15 +52,16 @@ export const SearchBar: React.FC<SearchBarProps> = ({
           >
             {showFavorites ? "❤️ 收藏列表" : "🤍 全部歌曲"}
           </button>
-        </div>
-        
-        <button 
+          <button 
           className={`play-mode-btn mode-${playMode}`}
           onClick={togglePlayMode}
           title={getPlayModeText()}
         >
           {getPlayModeText()}
         </button>
+        </div>
+        
+
       </div>
     </div>
   );
