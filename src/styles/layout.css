@@ -21,7 +21,8 @@
 .player-content {
   display: flex;
   gap: 20px;
-  flex-wrap: wrap;
+  flex-wrap: nowrap;
+  width: 100%;
 }
 
 .content-left,

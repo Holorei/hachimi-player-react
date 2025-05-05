@@ -119,7 +119,7 @@ export const Player: React.FC<PlayerProps> = ({
             <iframe 
               key={iframeKey}
               ref={iframeRef as React.RefObject<HTMLIFrameElement>}
-              src={`https://player.bilibili.com/player.html?bvid=${currentSong.bvid}&page=1&high_quality=1&danmaku=0&autoplay=1&mute=0&as_wide=1`}
+              src={`https://player.bilibili.com/player.html?bvid=${currentSong.bvid}&page=1&high_quality=1&danmaku=1&autoplay=1&mute=0&as_wide=1`}
               scrolling="no"
               frameBorder="0" 
               allowFullScreen
