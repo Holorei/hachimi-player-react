@@ -1,12 +1,9 @@
 .music-player {
-  max-width: 100%;
-  width: 100%;
-  min-height: 100vh;
-  margin: 0;
+  max-width: 1200px;
+  margin: 0 auto;
   padding: 20px;
   font-family: Arial, sans-serif;
   transition: all 0.3s ease;
-  box-sizing: border-box;
 }
 
 /* 主题相关样式 */
@@ -23,19 +20,18 @@
 /* 双栏布局 */
 .player-content {
   display: flex;
-  gap: 30px;
+  gap: 20px;
   flex-wrap: wrap;
-  height: calc(100vh - 150px);
 }
 
 .content-left {
-  flex: 0 0 calc(50% - 15px); /* 固定宽度为50%减去间隙的一半 */
-  overflow: hidden;
+  flex: 1;
+  min-width: 400px;
 }
 
 .content-right {
-  flex: 0 0 calc(50% - 15px); /* 固定宽度为50%减去间隙的一半 */
-  overflow: hidden;
+  flex: 1;
+  min-width: 400px;
 }
 
 .player-header {
@@ -281,9 +277,6 @@
   margin-bottom: 20px;
   transition: background-color 0.3s;
   height: 100%;
-  overflow: hidden;
-  display: flex;
-  flex-direction: column;
 }
 
 .light .song-list {
@@ -314,7 +307,7 @@
   list-style: none;
   padding: 0;
   margin: 0;
-  flex: 1;
+  max-height: 500px;
   overflow-y: auto;
 }
 
@@ -456,9 +449,6 @@
   padding: 20px;
   transition: background-color 0.3s, box-shadow 0.3s;
   height: 100%;
-  display: flex;
-  flex-direction: column;
-  overflow: hidden;
 }
 
 .light .player-container {
@@ -473,9 +463,6 @@
 
 .now-playing {
   text-align: center;
-  display: flex;
-  flex-direction: column;
-  height: 100%;
 }
 
 .now-playing h3 {
@@ -563,15 +550,11 @@
 
 .bilibili-player {
   margin-bottom: 15px;
-  flex: 1;
-  display: flex;
-  flex-direction: column;
 }
 
 .bilibili-player iframe {
   width: 100%;
-  flex: 1;
-  min-height: 300px;
+  height: 360px;
   border-radius: 8px;
   overflow: hidden;
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
@@ -621,30 +604,20 @@
 @media (max-width: 1000px) {
   .player-content {
     flex-direction: column;
-    height: auto;
   }
   
   .content-left, .content-right {
-    flex: 1 0 100%;
-    min-height: 500px;
+    min-width: 100%;
   }
   
   .content-left {
     margin-bottom: 20px;
   }
-  
-  .song-list, .player-container {
-    height: 500px;
-  }
 }
 
 @media (max-width: 768px) {
-  .music-player {
-    padding: 10px;
-  }
-  
   .bilibili-player iframe {
-    min-height: 240px;
+    height: 240px;
   }
   
   .player-controls-top {
