@@ -1,0 +1,61 @@
+import React from 'react';
+import { Song } from '../types';
+import { FavoriteButton } from './FavoriteButton';
+
+interface SongListProps {
+  filteredSongs: Song[];
+  currentSong: Song | null;
+  playSong: (song: Song) => void;
+  showFavorites: boolean;
+  favorites: string[];
+  toggleFavorite: (e: React.MouseEvent, bvid: string) => void;
+  formatTime: (seconds: string) => string;
+}
+
+export const SongList: React.FC<SongListProps> = ({
+  filteredSongs,
+  currentSong,
+  playSong,
+  showFavorites,
+  favorites,
+  toggleFavorite,
+  formatTime
+}) => {
+  return (
+    <div className="song-list">
+      <h2>哔哩哔哩歌曲列表 {showFavorites && "(收藏)"}</h2>
+      {filteredSongs.length === 0 ? (
+        <p className="no-results">
+          {showFavorites ? "没有收藏的歌曲" : "没有找到匹配的歌曲"}
+        </p>
+      ) : (
+        <ul>
+          {filteredSongs.map((song, index) => (
+            <li key={index} onClick={() => playSong(song)}>
+              <div className={`song-item ${currentSong?.bvid === song.bvid ? 'active' : ''}`}>
+                <div className="song-title-container">
+                  <FavoriteButton 
+                    isFavorite={favorites.includes(song.bvid)}
+                    onClick={(e: React.MouseEvent) => toggleFavorite(e, song.bvid)}
+                    size="small"
+                  />
+                  <div className="song-title">
+                    {song.originalTitle}
+                    <span className="video-title">（{song.videoTitle}）</span>
+                  </div>
+                </div>
+                <div className="song-info">
+                  <span className="song-author">{song.author}</span>
+                  <div className="song-details">
+                    <span className="song-duration">{formatTime(song.Duration)}</span>
+                    <span className="song-bv">{song.bvid}</span>
+                  </div>
+                </div>
+              </div>
+            </li>
+          ))}
+        </ul>
+      )}
+    </div>
+  );
+}; 
