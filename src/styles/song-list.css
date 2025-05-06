@@ -7,14 +7,16 @@
   height: 100%;
   display: flex;
   flex-direction: column;
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.2);
 }
 
 .light .song-list {
-  background-color: var(--light-secondary-bg);
+  background-color: rgba(255, 255, 255, 0.1);
 }
 
 .dark .song-list {
-  background-color: var(--dark-secondary-bg);
+  background-color: rgba(34, 34, 34, 0.1);
 }
 
 .song-list-header {
@@ -119,30 +121,30 @@
 }
 
 .light .song-item {
-  background-color: var(--light-tertiary-bg);
+  background-color: rgba(255, 255, 255, 0.7);
   box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
 }
 
 .dark .song-item {
-  background-color: var(--dark-tertiary-bg);
+  background-color: rgba(34, 34, 34, 0.1);
   box-shadow: 0 1px 3px rgba(0, 0, 0, 0.2);
 }
 
 .light .song-item:hover {
-  background-color: #f9f9f9;
+  background-color: rgba(249, 249, 249, 0.7); /* 悬停时稍微不透明一点 */
 }
 
 .dark .song-item:hover {
-  background-color: #3a3a3a;
+  background-color: rgba(58, 58, 58, 0.7); /* 悬停时稍微不透明一点 */
 }
 
 .light .song-item.active {
-  background-color: #ffe0e9;
+  background-color: rgba(255, 224, 233, 0.7); /* 活动项稍微不透明一点 */
   border-left: 4px solid var(--primary-color);
 }
 
 .dark .song-item.active {
-  background-color: #3a2a30;
+  background-color: rgba(58, 42, 48, 0.7); /* 活动项稍微不透明一点 */
   border-left: 4px solid var(--primary-color);
 }
 

@@ -1,3 +1,4 @@
+/* 主要布局样式，移除了之前的::before伪元素 */
 .music-player {
   max-width: none;
   max-height: 100%;
@@ -5,17 +6,31 @@
   padding: 20px;
   font-family: Arial, sans-serif;
   transition: all var(--transition-time) ease;
+  position: relative;
 }
 
 /* 主题相关样式 */
 .music-player.light {
-  background-color: var(--light-bg);
-  color: var(--light-text);
+  background-color: rgba(245, 245, 245, 0.1);
+  color: #000000;
+  text-shadow: 0 0 2px rgba(255, 255, 255, 0.1);
 }
 
 .music-player.dark {
-  background-color: var(--dark-bg);
-  color: var(--dark-text);
+  background-color: rgba(18, 18, 18, 0.1);
+  color: #ffffff;
+  text-shadow: 0 0 2px rgba(0, 0, 0, 0.5);
+}
+
+/* 增强文本可见度 */
+.light h2, .light h3, .light p {
+  color: #000000;
+  text-shadow: 0 0 2px rgba(255, 255, 255, 0.5);
+}
+
+.dark h2, .dark h3, .dark p {
+  color: #ffffff;
+  text-shadow: 0 0 2px rgba(0, 0, 0, 0.5);
 }
 
 /* 双栏布局 */
@@ -29,10 +44,22 @@
 .content-left {
   flex: 1;
   max-width: 35%; /* 考虑间隙 */
+  background-color: rgba(255, 255, 255, 0.4);
+  border-radius: 8px;
+  padding: 10px;
 }
+
 .content-right {
   flex: 1;
   max-width: 65%; /* 考虑间隙 */
+  background-color: rgba(255, 255, 255, 0.4);
+  border-radius: 8px;
+  padding: 10px;
+}
+
+.dark .content-left,
+.dark .content-right {
+  background-color: rgba(34, 34, 34, 0.3);
 }
 
 .player-header {
@@ -55,11 +82,11 @@
 }
 
 .light .no-song-selected {
-  background-color: var(--light-secondary-bg);
+  background-color: rgba(255, 255, 255, 0.1);
 }
 
 .dark .no-song-selected {
-  background-color: var(--dark-secondary-bg);
+  background-color: rgba(34, 34, 34, 0.1);
 }
 
 .no-song-selected h3 {

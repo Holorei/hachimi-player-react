@@ -4,15 +4,17 @@
   padding: 20px;
   transition: background-color var(--transition-time), box-shadow var(--transition-time);
   height: 100%;
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.2);
 }
 
 .light .player-container {
-  background-color: var(--light-tertiary-bg);
+  background-color: rgba(255, 255, 255, 0.1);
   box-shadow: var(--light-shadow);
 }
 
 .dark .player-container {
-  background-color: var(--dark-tertiary-bg);
+  background-color: rgba(34, 34, 34, 0.1);
   box-shadow: var(--dark-shadow);
 }
 

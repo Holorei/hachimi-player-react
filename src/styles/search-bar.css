@@ -9,14 +9,16 @@
   box-shadow: var(--light-shadow);
   transition: all var(--transition-time) ease;
   flex: 8;
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.2);
 }
 
 .light .search-container {
-  background-color: var(--light-tertiary-bg);
+  background-color: rgba(255, 255, 255, 0.7);
 }
 
 .dark .search-container {
-  background-color: var(--dark-tertiary-bg);
+  background-color: rgba(34, 34, 34, 0.7);
   box-shadow: var(--dark-shadow);
 }
 

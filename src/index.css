@@ -120,6 +120,11 @@ body {
   min-width: 320px;
   min-height: 100vh;
   width: 100%;
+  background-image: linear-gradient(rgba(255, 255, 255, 0.5), rgba(255, 255, 255, 0.5)), url('./assets/bg.svg');
+  background-position: center center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-attachment: fixed;
 }
 
 h1 {
