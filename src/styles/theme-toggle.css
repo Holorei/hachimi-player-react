@@ -5,7 +5,6 @@
 }
 
 .theme-toggle {
-  background: none;
   border: none;
   font-size: 1.5rem;
   cursor: pointer;
@@ -16,7 +15,7 @@
 }
 
 .light .theme-toggle {
-  background-color: var(--light-button-bg);
+  background-color: rgba(252, 183, 183, 0.7);
 }
 
 .dark .theme-toggle {

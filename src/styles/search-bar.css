@@ -88,7 +88,7 @@
   color: var(--dark-secondary-text);
 }
 
-.play-mode-btn, .favorite-filter-btn {
+.play-mode-btn, .favorite-filter-btn, .auto-play-btn {
   padding: 6px 12px;
   border-radius: 4px;
   font-size: 14px;
@@ -99,27 +99,27 @@
   gap: 5px;
 }
 
-.play-mode-btn span, .favorite-filter-btn span {
+.play-mode-btn span, .favorite-filter-btn span, .auto-play-btn span {
   display: inline-block;
 }
 
-.light .play-mode-btn, .light .favorite-filter-btn {
+.light .play-mode-btn, .light .favorite-filter-btn, .light .auto-play-btn {
   background-color: var(--light-button-bg);
   border: 1px solid var(--light-button-border);
   color: var(--light-secondary-text);
 }
 
-.dark .play-mode-btn, .dark .favorite-filter-btn {
+.dark .play-mode-btn, .dark .favorite-filter-btn, .dark .auto-play-btn {
   background-color: var(--dark-button-bg);
   border: 1px solid var(--dark-button-border);
   color: var(--dark-secondary-text);
 }
 
-.light .play-mode-btn:hover, .light .favorite-filter-btn:hover {
+.light .play-mode-btn:hover, .light .favorite-filter-btn:hover, .light .auto-play-btn:hover {
   background-color: var(--light-border);
 }
 
-.dark .play-mode-btn:hover, .dark .favorite-filter-btn:hover {
+.dark .play-mode-btn:hover, .dark .favorite-filter-btn:hover, .dark .auto-play-btn:hover {
   background-color: #555;
 }
 
@@ -142,13 +142,19 @@
   border-color: var(--error-color);
 }
 
+.auto-play-btn.active {
+  background-color: var(--accent-color);
+  color: white;
+  border-color: var(--accent-color);
+}
+
 @media (max-width: 768px) {
-  .play-mode-btn, .favorite-filter-btn {
+  .play-mode-btn, .favorite-filter-btn, .auto-play-btn {
     font-size: 12px;
     padding: 5px 10px;
   }
   
-  .favorite-filter-btn {
+  .favorite-filter-btn, .auto-play-btn {
     width: 100%;
     text-align: center;
     justify-content: center;

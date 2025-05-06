@@ -33,7 +33,6 @@ function App() {
     <div className="app-container" style={{ width: '100vw', minHeight: '100vh' }}>
       <header>
         <h1>哈基米音乐播放器</h1>
-        <p>点击歌曲播放音频</p>
       </header>
       
       <main>

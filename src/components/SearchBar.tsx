@@ -1,6 +1,6 @@
 import React from 'react';
 import { PlayMode } from '../types';
-import { FaHeart, FaRegHeart, FaRandom, FaRedo, FaForward } from 'react-icons/fa';
+import { FaHeart, FaRegHeart, FaRandom, FaRedo, FaForward, FaPlay, FaPause } from 'react-icons/fa';
 
 interface SearchBarProps {
   searchQuery: string;
@@ -50,16 +50,14 @@ export const SearchBar: React.FC<SearchBarProps> = ({
       />
       <div className="player-controls-top">
         <div className="control-group">
-          <div className="auto-play-toggle">
-            <label>
-              <input 
-                type="checkbox" 
-                checked={autoPlay} 
-                onChange={() => setAutoPlay(!autoPlay)} 
-              />
-              <span>自动播放下一首</span>
-            </label>
-          </div>
+          <button 
+            className={`auto-play-btn ${autoPlay ? 'active' : ''}`}
+            onClick={() => setAutoPlay(!autoPlay)}
+            title={autoPlay ? "暂停播放" : "自动播放"}
+          >
+            {autoPlay ? <FaPause /> : <FaPlay />}
+            <span>{autoPlay ? " 暂停播放" : " 自动播放"}</span>
+          </button>
           <button 
             className={`favorite-filter-btn ${showFavorites ? 'active' : ''}`}
             onClick={toggleShowFavorites}

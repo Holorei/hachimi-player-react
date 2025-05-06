@@ -38,7 +38,7 @@ header {
 }
 
 header h1 {
-  color: #fb7299;
+  color:rgb(255, 198, 214);
   margin-bottom: 10px;
 }
 
@@ -75,7 +75,4 @@ body.dark footer {
     padding: 10px;
   }
   
-  header h1 {
-    font-size: 24px;
-  }
 } 
