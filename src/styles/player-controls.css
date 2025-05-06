@@ -1,6 +1,6 @@
 .playback-controls {
   display: flex;
-  justify-content: center;
+  justify-content: space-between;
   gap: 30%;
   margin: 15px 0 20px;
 }

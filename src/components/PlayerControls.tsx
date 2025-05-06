@@ -12,10 +12,10 @@ export const PlayerControls: React.FC<PlayerControlsProps> = ({
 }) => {
   return (
     <div className="playback-controls">
-      <button onClick={playPrevious} className="control-btn previous" title="上一首">
+      <button onClick={playPrevious} className="control-btn previous">
         <FaStepBackward />
       </button>
-      <button onClick={playNext} className="control-btn next" title="下一首">
+      <button onClick={playNext} className="control-btn next">
         <FaStepForward />
       </button>
     </div>

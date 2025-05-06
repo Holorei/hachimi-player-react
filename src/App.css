@@ -27,7 +27,6 @@ body.dark {
 }
 
 .app-container {
-  width: 100%;
   max-width: none;
   margin: 0 auto;
   padding: 20px;

@@ -94,6 +94,11 @@ export const Player: React.FC<PlayerProps> = ({
   return (
     <div className="player-container">
       <div className="now-playing">
+                
+      <PlayerControls
+          playPrevious={playPrevious}
+          playNext={playNext}
+        />
         <h3>当前播放: {currentSong.originalTitle}</h3>
         <p>{currentSong.videoTitle}</p>
         <div className="now-playing-info">
@@ -105,11 +110,7 @@ export const Player: React.FC<PlayerProps> = ({
             size="large"
           />
         </div>
-        
-        <PlayerControls
-          playPrevious={playPrevious}
-          playNext={playNext}
-        />
+
         
         {loading && <p>加载中...</p>}
         {error && <p className="error">{error}</p>}

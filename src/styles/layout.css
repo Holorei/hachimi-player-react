@@ -1,5 +1,6 @@
 .music-player {
   max-width: none;
+  max-height: 100%;
   margin: 0 auto;
   padding: 20px;
   font-family: Arial, sans-serif;
@@ -25,11 +26,13 @@
   width: 100%;
 }
 
-.content-left,
+.content-left {
+  flex: 1;
+  max-width: 35%; /* 考虑间隙 */
+}
 .content-right {
   flex: 1;
-  min-width: 50%; /* 改为百分比布局 */
-  max-width: calc(50% - 10px); /* 考虑间隙 */
+  max-width: 65%; /* 考虑间隙 */
 }
 
 .player-header {
