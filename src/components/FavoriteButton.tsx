@@ -1,4 +1,5 @@
 import React from 'react';
+import { FaHeart, FaRegHeart } from 'react-icons/fa';
 
 interface FavoriteButtonProps {
   isFavorite: boolean;
@@ -17,7 +18,7 @@ export const FavoriteButton: React.FC<FavoriteButtonProps> = ({
       onClick={onClick}
       title={isFavorite ? "取消收藏" : "收藏歌曲"}
     >
-      {isFavorite ? "❤️" : "🤍"}
+      {isFavorite ? <FaHeart className="heart-icon filled" /> : <FaRegHeart className="heart-icon" />}
     </button>
   );
 }; 

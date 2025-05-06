@@ -54,7 +54,7 @@
 .control-group {
   display: flex;
   align-items: center;
-  gap: 30px;
+  gap: 15px;
 }
 
 .auto-play-toggle {
@@ -92,6 +92,13 @@
   font-size: 14px;
   cursor: pointer;
   transition: all 0.2s;
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+
+.play-mode-btn span, .favorite-filter-btn span {
+  display: inline-block;
 }
 
 .light .play-mode-btn, .light .favorite-filter-btn {
@@ -142,5 +149,6 @@
   .favorite-filter-btn {
     width: 100%;
     text-align: center;
+    justify-content: center;
   }
 } 

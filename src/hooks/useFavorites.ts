@@ -112,11 +112,57 @@ export const useFavorites = () => {
     console.log('当前管理的收藏列表:', favorites);
   }, [favorites]);
 
+  // 导出收藏列表
+  const exportFavorites = () => {
+    const dataStr = JSON.stringify(favorites);
+    const dataUri = `data:application/json;charset=utf-8,${encodeURIComponent(dataStr)}`;
+    
+    const exportFileDefaultName = 'bilibili-favorites.json';
+    
+    const linkElement = document.createElement('a');
+    linkElement.setAttribute('href', dataUri);
+    linkElement.setAttribute('download', exportFileDefaultName);
+    linkElement.click();
+    console.log('导出收藏列表:', favorites);
+  };
+
+  // 导入收藏列表
+  const importFavorites = (event: React.ChangeEvent<HTMLInputElement>) => {
+    const fileReader = new FileReader();
+    if (event.target.files && event.target.files.length > 0) {
+      fileReader.readAsText(event.target.files[0], "UTF-8");
+      fileReader.onload = e => {
+        if (e.target?.result) {
+          try {
+            const importedFavorites = JSON.parse(e.target.result as string);
+            if (Array.isArray(importedFavorites)) {
+              setFavorites(prevFavorites => {
+                // 合并新旧收藏，去重
+                const combined = [...prevFavorites, ...importedFavorites];
+                const uniqueFavorites = [...new Set(combined)];
+                console.log('导入收藏列表:', uniqueFavorites);
+                return uniqueFavorites;
+              });
+            }
+          } catch (error) {
+            console.error("Error parsing imported favorites:", error);
+            alert("导入失败，文件格式不正确");
+          }
+        }
+      };
+      fileReader.onerror = () => {
+        alert("导入失败，请重试");
+      };
+    }
+  };
+
   return {
     favorites,
     showFavorites,
     toggleFavorite,
     toggleShowFavorites,
-    isFavorite
+    isFavorite,
+    exportFavorites,
+    importFavorites
   };
 }; 

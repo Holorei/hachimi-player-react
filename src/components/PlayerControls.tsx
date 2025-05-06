@@ -1,4 +1,5 @@
 import React from 'react';
+import { FaStepBackward, FaStepForward } from 'react-icons/fa';
 
 interface PlayerControlsProps {
   playPrevious: () => void;
@@ -11,8 +12,12 @@ export const PlayerControls: React.FC<PlayerControlsProps> = ({
 }) => {
   return (
     <div className="playback-controls">
-      <button onClick={playPrevious} className="control-btn">上一首</button>
-      <button onClick={playNext} className="control-btn">下一首</button>
+      <button onClick={playPrevious} className="control-btn previous" title="上一首">
+        <FaStepBackward />
+      </button>
+      <button onClick={playNext} className="control-btn next" title="下一首">
+        <FaStepForward />
+      </button>
     </div>
   );
 }; 

@@ -1,5 +1,6 @@
 import React from 'react';
 import { PlayMode } from '../types';
+import { FaHeart, FaRegHeart, FaRandom, FaRedo, FaForward } from 'react-icons/fa';
 
 interface SearchBarProps {
   searchQuery: string;
@@ -24,6 +25,20 @@ export const SearchBar: React.FC<SearchBarProps> = ({
   toggleShowFavorites,
   getPlayModeText
 }) => {
+  // 根据播放模式获取图标
+  const getPlayModeIcon = () => {
+    switch (playMode) {
+      case PlayMode.SEQUENTIAL:
+        return <FaForward />;
+      case PlayMode.LOOP:
+        return <FaRedo />;
+      case PlayMode.RANDOM:
+        return <FaRandom />;
+      default:
+        return <FaForward />;
+    }
+  };
+
   return (
     <div className="search-container">
       <input
@@ -50,18 +65,18 @@ export const SearchBar: React.FC<SearchBarProps> = ({
             onClick={toggleShowFavorites}
             title={showFavorites ? "显示全部歌曲" : "只显示红心歌曲"}
           >
-            {showFavorites ? "❤️ 收藏列表" : "🤍 全部歌曲"}
+            {showFavorites ? <FaHeart /> : <FaRegHeart />}
+            <span>{showFavorites ? " 收藏列表" : " 全部歌曲"}</span>
           </button>
           <button 
-          className={`play-mode-btn mode-${playMode}`}
-          onClick={togglePlayMode}
-          title={getPlayModeText()}
-        >
-          {getPlayModeText()}
-        </button>
+            className={`play-mode-btn mode-${playMode}`}
+            onClick={togglePlayMode}
+            title={getPlayModeText()}
+          >
+            {getPlayModeIcon()}
+            <span> {getPlayModeText()}</span>
+          </button>
         </div>
-        
-
       </div>
     </div>
   );

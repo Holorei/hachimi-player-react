@@ -1,6 +1,7 @@
-import React from 'react';
+import React, { useRef } from 'react';
 import { Song } from '../types';
 import { FavoriteButton } from './FavoriteButton';
+import { FaFileExport, FaFileImport } from 'react-icons/fa';
 
 interface SongListProps {
   filteredSongs: Song[];
@@ -10,6 +11,8 @@ interface SongListProps {
   favorites: string[];
   toggleFavorite: (e: React.MouseEvent, bvid: string) => void;
   formatTime: (seconds: string) => string;
+  exportFavorites: () => void;
+  importFavorites: (event: React.ChangeEvent<HTMLInputElement>) => void;
 }
 
 export const SongList: React.FC<SongListProps> = ({
@@ -19,11 +22,52 @@ export const SongList: React.FC<SongListProps> = ({
   showFavorites,
   favorites,
   toggleFavorite,
-  formatTime
+  formatTime,
+  exportFavorites,
+  importFavorites
 }) => {
+  const fileInputRef = useRef<HTMLInputElement>(null);
+
+  const handleImportClick = () => {
+    if (fileInputRef.current) {
+      fileInputRef.current.click();
+    }
+  };
+
   return (
     <div className="song-list">
-      <h2>哔哩哔哩歌曲列表 {showFavorites && "(收藏)"}</h2>
+      <div className="song-list-header">
+        <h2>哔哩哔哩歌曲列表 {showFavorites && "(收藏)"}</h2>
+        
+        {showFavorites && (
+          <div className="favorite-actions">
+            <button 
+              className="favorite-action-btn export-btn" 
+              onClick={exportFavorites}
+              title="导出收藏列表"
+            >
+              <FaFileExport />
+              <span>导出</span>
+            </button>
+            <button 
+              className="favorite-action-btn import-btn" 
+              onClick={handleImportClick}
+              title="导入收藏列表"
+            >
+              <FaFileImport />
+              <span>导入</span>
+            </button>
+            <input 
+              type="file" 
+              ref={fileInputRef} 
+              style={{ display: 'none' }} 
+              accept=".json"
+              onChange={importFavorites}
+            />
+          </div>
+        )}
+      </div>
+      
       {filteredSongs.length === 0 ? (
         <p className="no-results">
           {showFavorites ? "没有收藏的歌曲" : "没有找到匹配的歌曲"}

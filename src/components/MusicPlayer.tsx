@@ -12,7 +12,15 @@ import '../styles/index.css';
 const MusicPlayer: React.FC = () => {
   // 使用自定义钩子管理状态和逻辑
   const { theme, toggleTheme } = useTheme();
-  const { favorites, showFavorites, toggleFavorite, toggleShowFavorites, isFavorite } = useFavorites();
+  const { 
+    favorites, 
+    showFavorites, 
+    toggleFavorite, 
+    toggleShowFavorites, 
+    isFavorite,
+    exportFavorites,
+    importFavorites
+  } = useFavorites();
   const { songs, filteredSongs, searchQuery, setSearchQuery } = useSongs(favorites, showFavorites);
   const {
     currentSong,
@@ -46,26 +54,22 @@ const MusicPlayer: React.FC = () => {
 
   return (
     <div className={`music-player ${theme}`}>
-
-    <div style={{display: 'flex', justifyContent: 'space-evenly', alignItems: 'center' }}>
-      <SearchBar 
-        searchQuery={searchQuery}
-        setSearchQuery={setSearchQuery}
-        autoPlay={autoPlay}
-        setAutoPlay={setAutoPlay}
-        playMode={playMode}
-        togglePlayMode={togglePlayMode}
-        showFavorites={showFavorites}
-        toggleShowFavorites={toggleShowFavorites}
-        getPlayModeText={getPlayModeText}
-      />  
-      <div className="player-header">
-        <ThemeToggle theme={theme} toggleTheme={toggleTheme} />
+      <div style={{display: 'flex', justifyContent: 'space-evenly', alignItems: 'center' }}>
+        <SearchBar 
+          searchQuery={searchQuery}
+          setSearchQuery={setSearchQuery}
+          autoPlay={autoPlay}
+          setAutoPlay={setAutoPlay}
+          playMode={playMode}
+          togglePlayMode={togglePlayMode}
+          showFavorites={showFavorites}
+          toggleShowFavorites={toggleShowFavorites}
+          getPlayModeText={getPlayModeText}
+        />
+        <div className="player-header">
+          <ThemeToggle theme={theme} toggleTheme={toggleTheme} />
+        </div>
       </div>
-    </div>
-
-
-
       
       <div className="player-content">
         <div className="content-left">
@@ -77,6 +81,8 @@ const MusicPlayer: React.FC = () => {
             favorites={favorites}
             toggleFavorite={handleToggleFavorite}
             formatTime={formatTime}
+            exportFavorites={exportFavorites}
+            importFavorites={importFavorites}
           />
         </div>
         

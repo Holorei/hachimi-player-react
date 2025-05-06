@@ -5,6 +5,8 @@
   margin-bottom: 20px;
   transition: background-color var(--transition-time);
   height: 100%;
+  display: flex;
+  flex-direction: column;
 }
 
 .light .song-list {
@@ -15,12 +17,22 @@
   background-color: var(--dark-secondary-bg);
 }
 
+.song-list-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
 .song-list h2 {
   margin-top: 0;
   font-size: 24px;
   text-align: center;
-  margin-bottom: 20px;
+  margin-bottom: 0;
   transition: color 0.2s;
+  flex: 1;
 }
 
 .light .song-list h2 {
@@ -31,12 +43,64 @@
   color: var(--dark-text);
 }
 
+.favorite-actions {
+  display: flex;
+  gap: 10px;
+}
+
+.favorite-action-btn {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  padding: 8px 12px;
+  border-radius: 4px;
+  border: none;
+  font-size: 14px;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.light .favorite-action-btn {
+  background-color: var(--light-button-bg);
+  color: var(--light-secondary-text);
+  border: 1px solid var(--light-button-border);
+}
+
+.dark .favorite-action-btn {
+  background-color: var(--dark-button-bg);
+  color: var(--dark-secondary-text);
+  border: 1px solid var(--dark-button-border);
+}
+
+.favorite-action-btn:hover {
+  transform: translateY(-2px);
+}
+
+.light .favorite-action-btn:hover {
+  background-color: var(--light-border);
+}
+
+.dark .favorite-action-btn:hover {
+  background-color: #555;
+}
+
+.export-btn {
+  background-color: #4caf50;
+  color: white;
+}
+
+.import-btn {
+  background-color: #2196f3;
+  color: white;
+}
+
 .song-list ul {
   list-style: none;
   padding: 0;
   margin: 0;
-  max-height: 500px;
+  max-height: 550px; /* 增加列表高度 */
   overflow-y: auto;
+  flex: 1;
 }
 
 /* 修改红心位置的相关样式 */
@@ -169,4 +233,20 @@
 
 .dark .no-results {
   color: var(--dark-tertiary-text);
+}
+
+@media (max-width: 768px) {
+  .song-list-header {
+    flex-direction: column;
+    align-items: center;
+  }
+  
+  .song-list h2 {
+    margin-bottom: 10px;
+  }
+  
+  .favorite-actions {
+    width: 100%;
+    justify-content: center;
+  }
 } 
