@@ -37,7 +37,7 @@ export const SongList: React.FC<SongListProps> = ({
   return (
     <div className="song-list">
       <div className="song-list-header">
-        <h2>哔哩哔哩歌曲列表 {showFavorites && "(收藏)"}</h2>
+        <h2>歌曲列表 {showFavorites && "(收藏)"}</h2>
         
         {showFavorites && (
           <div className="favorite-actions">
