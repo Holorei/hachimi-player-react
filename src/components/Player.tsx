@@ -103,7 +103,7 @@ export const Player: React.FC<PlayerProps> = ({
         <p>{currentSong.videoTitle}</p>
         <div className="now-playing-info">
           <p>作者: {currentSong.author}</p>
-          <p>时长: {formatTime(currentSong.Duration)}</p>
+          <p>时长: {formatTime(currentSong.duration)}</p>
           <FavoriteButton 
             isFavorite={isFavorite}
             onClick={toggleFavorite}
@@ -134,7 +134,7 @@ export const Player: React.FC<PlayerProps> = ({
               </p>
               {autoPlay && (
                 <p className="auto-play-note">
-                  将在{formatTime(currentSong.Duration)}后
+                  将在{formatTime(currentSong.duration)}后
                   {playMode === PlayMode.LOOP 
                     ? "重新播放此歌曲" 
                     : playMode === PlayMode.RANDOM 

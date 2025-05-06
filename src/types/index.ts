@@ -4,7 +4,7 @@ export interface Song {
   author: string;
   originalTitle: string;
   videoTitle: string;
-  Duration: string;  // 持续时间（秒）
+  duration: string;  // 持续时间（秒）
 }
 
 // 播放模式枚举

@@ -91,7 +91,7 @@ export const SongList: React.FC<SongListProps> = ({
                 <div className="song-info">
                   <span className="song-author">{song.author}</span>
                   <div className="song-details">
-                    <span className="song-duration">{formatTime(song.Duration)}</span>
+                    <span className="song-duration">{formatTime(song.duration)}</span>
                     <span className="song-bv">{song.bvid}</span>
                   </div>
                 </div>

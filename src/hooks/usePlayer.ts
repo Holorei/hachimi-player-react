@@ -70,7 +70,7 @@ export const usePlayer = (allSongs: Song[], filteredSongs: Song[]) => {
     if (currentSong && autoPlay) {
       // 重新设置当前歌曲的定时器
       clearPlayTimer();
-      const duration = parseInt(currentSong.Duration) || 240;
+      const duration = parseInt(currentSong.duration) || 240;
       const timeoutDuration = (duration + 5) * 1000;
       
       playTimerRef.current = window.setTimeout(() => {
@@ -164,7 +164,7 @@ export const usePlayer = (allSongs: Song[], filteredSongs: Song[]) => {
       
       // 设置自动播放定时器
       if (autoPlay) {
-        const duration = parseInt(song.Duration) || 240;
+        const duration = parseInt(song.duration) || 240;
         const timeoutDuration = (duration + 5) * 1000;
         console.log(`设置自动播放定时器：${timeoutDuration / 1000}秒后播放下一首`);
         
@@ -296,7 +296,7 @@ export const usePlayer = (allSongs: Song[], filteredSongs: Song[]) => {
         
         // 重新设置定时器
         clearPlayTimer();
-        const duration = parseInt(nextSong.Duration) || 240;
+        const duration = parseInt(nextSong.duration) || 240;
         const timeoutDuration = (duration + 5) * 1000;
         
         playTimerRef.current = window.setTimeout(() => {
