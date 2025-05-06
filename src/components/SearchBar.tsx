@@ -2,13 +2,6 @@ import React from 'react';
 import { PlayMode } from '../types';
 import { FaHeart, FaRegHeart, FaRandom, FaRedo, FaForward } from 'react-icons/fa';
 
-// 为Google AdSense添加类型声明
-declare global {
-  interface Window {
-    adsbygoogle: Array<{[key: string]: unknown}>;
-  }
-}
-
 interface SearchBarProps {
   searchQuery: string;
   setSearchQuery: (query: string) => void;
@@ -45,24 +38,6 @@ export const SearchBar: React.FC<SearchBarProps> = ({
         return <FaForward />;
     }
   };
-
-  // 广告组件加载后插入脚本
-  React.useEffect(() => {
-    const adsScript = document.createElement('script');
-    adsScript.src = "https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8113458408576939";
-    adsScript.async = true;
-    adsScript.crossOrigin = "anonymous";
-    document.head.appendChild(adsScript);
-
-    (window.adsbygoogle = window.adsbygoogle || []).push({});
-
-    return () => {
-      // 组件卸载时清理
-      if (document.head.contains(adsScript)) {
-        document.head.removeChild(adsScript);
-      }
-    };
-  }, []);
 
   return (
     <div className="search-container">
@@ -102,17 +77,6 @@ export const SearchBar: React.FC<SearchBarProps> = ({
             <span> {getPlayModeText()}</span>
           </button>
         </div>
-      </div>
-      
-      {/* 底部水平广告 */}
-      <div className="horizontal-ad">
-        <ins className="adsbygoogle"
-          style={{ display: 'block' }}
-          data-ad-client="ca-pub-8113458408576939"
-          data-ad-slot="1106366368"
-          data-ad-format="auto"
-          data-full-width-responsive="true">
-        </ins>
       </div>
     </div>
   );
