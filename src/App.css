@@ -37,6 +37,52 @@ header {
   margin-bottom: 30px;
 }
 
+.nav-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  position: relative;
+}
+
+.top-nav {
+  display: flex;
+  gap: 20px;
+  margin-top: 10px;
+  align-items: center;
+}
+
+.github-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: transform 0.2s;
+}
+
+.github-icon img {
+  width: 28px;
+  height: 28px;
+}
+
+.github-icon:hover {
+  transform: scale(1.1);
+}
+
+.top-nav a {
+  color: var(--primary-color);
+  text-decoration: none;
+  font-weight: 500;
+  transition: color 0.2s;
+}
+
+.top-nav a.nav-link {
+  font-size: 1.2rem;
+}
+
+.top-nav a:hover {
+  color: #ff91b5;
+  text-decoration: underline;
+}
+
 header h1 {
   color:rgb(255, 198, 214);
   margin-bottom: 10px;
@@ -59,9 +105,25 @@ footer {
   margin-top: 50px;
   text-align: center;
   padding: 20px 0;
-  font-size: 14px;
+  font-size: 1.5rem;
   color: #888;
   border-top: 1px solid #eee;
+}
+
+.footer-links {
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+}
+
+.footer-link {
+  color: var(--primary-color);
+  text-decoration: none;
+}
+
+.footer-link:hover {
+  color: #ff91b5;
+  text-decoration: underline;
 }
 
 body.dark footer {
@@ -75,4 +137,12 @@ body.dark footer {
     padding: 10px;
   }
   
+  /* 移动设备上优化导航栏 */
+  .top-nav {
+    gap: 15px;
+  }
+  
+  .top-nav a.nav-link {
+    font-size: 1.2rem;
+  }
 } 

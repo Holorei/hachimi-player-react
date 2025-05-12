@@ -1,6 +1,9 @@
 import { useEffect } from 'react'
 import './App.css'
 import MusicPlayer from './components/MusicPlayer'
+import InfoModal from './components/InfoModal'
+import './styles/InfoModal.css'
+import githubIcon from './assets/github.svg'
 
 function App() {
   // 确保localStorage在应用加载时能被正确访问
@@ -32,7 +35,16 @@ function App() {
   return (
     <div className="app-container" style={{ width: '100vw', minHeight: '100vh' }}>
       <header>
-        <h1>哈基米音乐播放器</h1>
+        <div className="nav-container">
+          <h1>哈基米音乐播放器</h1>
+          <nav className="top-nav">
+            <a href="https://github.com/holorei/hachimi-player-react" target="_blank" rel="noopener noreferrer" className="github-icon">
+              <img src={githubIcon} alt="GitHub" />
+            </a>
+            <a href="#about" className="nav-link">关于</a>
+            <a href="#license" className="nav-link">许可</a>
+          </nav>
+        </div>
       </header>
       
       <main>
@@ -40,8 +52,12 @@ function App() {
       </main>
       
       <footer>
-        <p></p>
+        <div className="footer-links">
+          <a href="#privacy-policy" className="footer-link">隐私政策</a>
+        </div>
       </footer>
+
+      <InfoModal />
     </div>
   )
 }
